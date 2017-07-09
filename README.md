@@ -7,7 +7,7 @@ For instance you can run the same CLI-object on the Serial interface but re-use 
 
 ```c++
 size_t idx(0);
-if (getOpt(idx, "off", "on") != ArgOk) {
+if (getOpt(idx, "off", "on") == ArgOk) {
   digitalWrite(LED_BUILTIN, idx);
 }
 // or
