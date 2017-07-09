@@ -38,26 +38,29 @@ This is a more or less complete rewrite of the SerialCommand library originally 
 
 The original library had several little issues like missing const correctness, old-style C++, no proper naming of member variables, some corner cases (Stream::read() can return -1 for instance), just to name a few. But the most annoying thing was the lack of context in the command callbacks which caused the rewrite.
 
-## Todo
+### Todos
 * Test on SAM, SAMD architectures - volunteers?
 * Lambda support
 * More complex callback dictionary to integrate help for the individual commands with the command itself which would simplify stuff like "help <command name>" and allows one to keep help and command close together what eases maintenance. Or even some sort of per command argument list with type and range checking like the boost command line parser implements but that's a rather huge task
 
 ## Installation
 ### Arduino IDE
-In the Arduino IDE, choose Sketch/Include Library/Manage Libraries.  Click the StreamCmd Library from the list, and click the Install button.
-
---- or ---
-
 1. Download the ZIP file (below) to your machine.
 2. In the Arduino IDE, choose Sketch/Include Library/Add Zip Library
 3. Navigate to the ZIP file, and click Open
+
+--- or ---
+
+In the Arduino IDE, choose Sketch/Include Library/Manage Libraries.  Click the StreamCmd Library from the list, and click the Install button.
 
 ## Compatible Hardware:
 No hardware dependencies.
 
 ## Examples:
 The library includes several examples to help you get started. These are accessible in the Examples/StreamCmd menu off the File menu in the Arduino IDE.
-* **[CommandLineWithArguments](examples/CommandLineWithArguments):** An example showing off the basic usage and command argument parsing.
-* **[CommandSets](examples/CommandSets):** Shows how to use different command sets and how to switch between them.
-* **[CommandStreams](examples/CommandStreams):** Shows how to use write one CLI and use it on different streams (Serial, telnet) -- to be added...
+* **[CommandLineWithArguments](examples/CommandLineWithArguments/CommandLineWithArguments.ino):** An example showing off the basic usage and command argument parsing.
+* **[CommandSets](examples/CommandSets/CommandSets.ino):** Shows how to use different command sets and how to switch between them.
+* **[CommandStreams](examples/CommandStreams/CommandStreams.ino):** Shows how to use write one CLI and use it on different streams (Serial, telnet) -- to be added...
+
+---
+Copyright (c) 2017 [Elektronik Workshop](http://elektronikworkshop.ch)

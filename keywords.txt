@@ -14,3 +14,15 @@ ArgOk             KEYWORD2
 ArgNone           KEYWORD2
 ArgTooSmall       KEYWORD2
 ArgTooLarge       KEYWORD2
+
+getOpt            KEYWORD2
+getOption         KEYWORD2
+getFloat          KEYWORD2
+getDouble         KEYWORD2
+getLDouble        KEYWORD2
+getInt            KEYWORD2
+getUInt           KEYWORD2
+getLong           KEYWORD2
+getULong          KEYWORD2
+getLLong          KEYWORD2
+getULLong         KEYWORD2

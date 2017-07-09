@@ -242,9 +242,9 @@ protected:
   } GetResult;
 
   template<typename T, typename TI, typename F>
-  GetResult getNum(T& num, T min, T max, int base, F strtoX)
+  GetResult getNum(T& num, T min, T max, int base, bool reparse, F strtoX)
   {
-    const char* arg = next();
+    const char* arg = reparse ? current() : next();
     if (not arg) {
       return ArgNone;
     }
@@ -267,15 +267,15 @@ protected:
     return ArgOk;
   }
 
-  #define STREAM_CMD_MAKE_GETTER(NAME, T, TI, MIN, MAX, CONV)     \
-    GetResult NAME(T& n, T min = MIN, T max = MAX)                \
-    {                                                             \
-      return StreamCmd::getNum<T, TI>(n, min, max, 10, CONV);     \
+  #define STREAM_CMD_MAKE_GETTER(NAME, T, TI, MIN, MAX, CONV)              \
+    GetResult NAME(T& n, T min = MIN, T max = MAX, bool reparse = false)   \
+    {                                                                      \
+      return StreamCmd::getNum<T, TI>(n, min, max, 10, reparse, CONV);     \
     }
-  #define STREAM_CMD_MAKE_GETTER_B(NAME, T, TI, MIN, MAX, CONV)   \
-    GetResult NAME(T& n, T min = MIN, T max = MAX, int base = 10) \
-    {                                                             \
-      return StreamCmd::getNum<T, TI>(n, min, max, base, CONV);   \
+  #define STREAM_CMD_MAKE_GETTER_B(NAME, T, TI, MIN, MAX, CONV)                         \
+    GetResult NAME(T& n, T min = MIN, T max = MAX, int base = 10, bool reparse = false) \
+    {                                                                                   \
+      return StreamCmd::getNum<T, TI>(n, min, max, base, reparse, CONV);                \
     }
 
   /** Wrapper function to make the template uniform.
