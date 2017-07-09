@@ -36,15 +36,16 @@
 #endif
 
 #ifdef ARDUINO_ARCH_AVR
+# include <limits.h>  /* INT_MIN, ... */
   /* argh, no std::forward, what a shame! */
 #else
+# include <climits>
 # include <utility>  /* std::forward */
 # define HAS_STD_FORWARD 1
 # define HAS_ULL 1
 #endif
 
 #include <string.h>  /* strtok_r     */
-#include <limits.h>  /* INT_MIN, ... */
 #include <float.h>   /* FLT_MIN, ... */
 #include <errno.h>   /* errno        */
 
@@ -315,7 +316,7 @@ protected:
    * <code>
    * size_t idx(0);
    * enum {ON = 0, OFF};
-   * switch (getOption(idx, "on", "off")) {
+   * switch (getOpt(idx, "on", "off")) {
    *   case ArgOk:
    *     switch (idx) {
    *       case ON:
@@ -335,7 +336,7 @@ protected:
 #if defined(HAS_STD_FORWARD) && HAS_STD_FORWARD == 1
   template<typename... Vals>
   GetResult
-  getOption(size_t& idx, Vals&&... vals)
+  getOpt(size_t& idx, Vals&&... vals)
   {
     const size_t N = sizeof... (Vals);
     const char* options[N] = { std::forward<Vals>(vals)... };

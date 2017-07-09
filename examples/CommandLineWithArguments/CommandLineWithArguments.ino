@@ -57,8 +57,7 @@ protected:
     int a = 0, b = 0;
 
     /* You can be nice and perform complex argument checking */
-    auto res = getInt(a, -5, 5);
-    switch (res) {
+    switch (getInt(a, -5, 5)) {
       case ArgTooSmall:
         Serial.println("first number too small, it should be in the range -5 .. 5");
         return;
@@ -71,7 +70,6 @@ protected:
       default:
       case ArgNone:
         Serial.println("first number missing");
-        Serial.println(res);
         return;
       case ArgOk:
         break;
@@ -93,10 +91,10 @@ protected:
    * gets even more elegant:
    *
    *   size_t idx(0);
-   *   if (getOption(idx, "off", "on") != ArgOk) {
+   *   if (getOpt(idx, "off", "on") != ArgOk) {
    *     ...
    *
-   * The above works on the ESP platforms though.
+   * The above already works on the ESP platforms though!
    */
   void led()
   {
