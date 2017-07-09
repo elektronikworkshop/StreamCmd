@@ -35,7 +35,6 @@
   #include <WProgram.h>
 #endif
 
-
 #ifdef ARDUINO_ARCH_AVR
   /* argh, no std::forward, what a shame! */
 #else
@@ -343,6 +342,7 @@ protected:
     return getOption(idx, options, N);
   }
 #endif
+
   GetResult
   getOption(size_t& idx, const char** options, size_t size)
   {
