@@ -1,0 +1,16 @@
+StreamCmd         KEYWORD1
+
+run               KEYWORD2
+clearBuffer       KEYWORD2
+addCommand        KEYWORD2
+setDefaultHandler KEYWORD2
+switchCommandSet  KEYWORD2
+getCommandSet     KEYWORD2
+next              KEYWORD2
+current           KEYWORD2
+
+GetResult         KEYWORD1
+ArgOk             KEYWORD2
+ArgNone           KEYWORD2
+ArgTooSmall       KEYWORD2
+ArgTooLarge       KEYWORD2
