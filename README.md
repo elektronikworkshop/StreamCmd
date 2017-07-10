@@ -27,7 +27,7 @@ Furthermore *StreamCmd* supports multiple different command sets which can be sw
 
 And finally *StreamCmd* allows you to customize your CLIs with a prompt. This way the user knows on which machine he operates (if you use the host name as prompt for instance).
 
-Inherit from *StreamCmd* and implement your callbacks as members, as shown in the [examples](##examples).
+Inherit from *StreamCmd* and implement your callbacks as members, as shown in the [examples](#examples).
 
 ## Design notes
 ### Static memory allocation
