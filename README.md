@@ -1,7 +1,7 @@
 # *StreamCmd* - A pluggable command line handler for Arduino Stream objects
 *StreamCmd* enables you to set up command line interfaces (CLI) which then will work on different kinds of Stream-objects like Serial, WiFiClient and so on.
 
-For instance you can run the same CLI-object on the Serial interface but re-use it for telnet or other interfaces which provide a Stream interface (if not: just write one - it's pretty simple).
+For instance you can run the same CLI-object on the Serial interface but re-use it for [Telnet](../TelnetServer) or other interfaces which provide a Stream interface (if not: just write one - it's pretty simple).
 
 *StreamCmd* features a neat argument parsing interface which allows you to fetch different flavors of numerical command arguments and lets you parse string options in a convenient manner. For instance:
 
@@ -27,7 +27,7 @@ Furthermore *StreamCmd* supports multiple different command sets which can be sw
 
 And finally *StreamCmd* allows you to customize your CLIs with a prompt. This way the user knows on which machine he operates (if you use the host name as prompt for instance).
 
-Inherit from *StreamCmd* and implement your callbacks as members, as shown in the examples.
+Inherit from *StreamCmd* and implement your callbacks as members, as shown in the [examples](##Examples).
 
 ## Design notes
 ### Static memory allocation
@@ -53,10 +53,10 @@ The original library had several little issues like missing const correctness, o
 
 In the Arduino IDE, choose Sketch/Include Library/Manage Libraries.  Click the StreamCmd Library from the list, and click the Install button.
 
-## Compatible Hardware:
+## Compatible Hardware
 No hardware dependencies.
 
-## Examples:
+## Examples
 The library includes several examples to help you get started. These are accessible in the Examples/StreamCmd menu off the File menu in the Arduino IDE.
 * **[CommandLineWithArguments](examples/CommandLineWithArguments/CommandLineWithArguments.ino):** An example showing off the basic usage and command argument parsing.
 * **[CommandSets](examples/CommandSets/CommandSets.ino):** Shows how to use different command sets and how to switch between them.
