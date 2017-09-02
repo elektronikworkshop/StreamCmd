@@ -113,7 +113,7 @@ public:
         bool executed = false;
 
         /* tokenize command line */
-
+        m_commandLen = strlen(m_commandLine);
         char *command = strtok_r(m_commandLine, m_delimiter, &m_last);
 
         /* this way current() will return the command when called before next() */
@@ -216,12 +216,40 @@ protected:
     return m_current;
   }
 
-  /** Only valid after next() has been called. As with next() this can
-   * return nullptr, so don't shoot yourself in the foot, you've been warned!
+  /** Returns the command (if called before any next() call) or the current
+   * command. As with next() this can return nullptr, so don't shoot yourself
+   * in the foot, you've been warned!
    */
   const char *current()
   {
     return m_current;
+  }
+
+  /** Reverts the effects of the tokenizer in case you need the original
+   * command line for custom parsing.
+   * Note that this will interfere with next() -- you should know what you're
+   * doing.
+   */
+  void reset()
+  {
+    char *p = m_commandLine;
+    for (int i = 0; i < m_commandLen; i++, p++) {
+      if (*p == 0) {
+        /* In case someone should allow multiple delimiters, this reset won't
+         * work anymore since we can not know which delimiter has been zeroed.
+         * Just as a sidenote for anyone who starts to fiddle with the code...
+         */
+        *p = *m_delimiter;
+      }
+    }
+  }
+
+  /** Returns the raw command line.
+   * Beware of the strtok effects.
+   */
+  const char *getCommandLine()
+  {
+    return m_commandLine;
   }
 
   /* Argument getters */
@@ -452,6 +480,10 @@ private:
 
   /** The command line buffer. */
   char m_commandLine[CommandBufferSize + 1];
+  /** The length of the command line before tokenizing it (will be used to
+   * revert the effects of strtok if desired)
+   */
+  size_t m_commandLen;
   /** The current write position in the command line buffer. */
   uint8_t m_pos;
   /** strtok_r state variable */
