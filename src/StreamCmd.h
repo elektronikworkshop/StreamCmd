@@ -396,18 +396,29 @@ protected:
    */
   void addCommand(const char *command, CommandCallback commandCallback)
   {
-    auto& count = set().m_commandCount;
-
-    if (count == MaxCommands) {
       /* WARNING
        *
-       * This will go unnoticed when commands are registered in
+       * These warnings will go unnoticed when commands are registered in
        * constructor in global scope before main is called.
        * This is the drawback when not allocating dynamically.
        *
        * To avoid such problems, register commands in a begin() function
        * which again is called after stream initialization (e.g. Serial)
        */
+    if (strlen(command) > MaxCommandSize) {
+      m_stream.println("WARNING");
+      m_stream.print("StreamCmd registered command \"");
+      m_stream.print(command);
+      m_stream.print("\" is longer than MaxCommandSize (");
+      m_stream.print(MaxCommandSize);
+      m_stream.println(") and will be truncated to this length, "
+                       "increase StreamCmd's MaxCommandSize template argument");
+    }
+
+    auto &count = set().m_commandCount;
+
+    if (count == MaxCommands) {
+      m_stream.println("WARNING");
       m_stream.print("StreamCmd command list overflow, dropping command \"");
       m_stream.print(command);
       m_stream.println("\", increase StreamCmd's MaxCommands template argument");
